@@ -1,0 +1,3 @@
+interface FilterPredicate<Share> {
+boolean isMatching(Share candidate);
+}

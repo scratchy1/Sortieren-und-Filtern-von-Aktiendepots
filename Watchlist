@@ -1,0 +1,51 @@
+public class Watchlist {
+// Liste shares
+List<Share> shares = new ArrayList<>();
+// Klasse Watchlist, Methode addShares
+void addShare(Share s) {
+shares.add(s);
+}
+// Klasse Watchlist, Methode filterShares
+void filterShares(FilterPredicate<Share> filterPredicate) {
+List<Share> resultList = new ArrayList<>();
+for (Share s : shares) {
+if (filterPredicate.isMatching(s)) {
+resultList.add(s);
+}
+}
+shares = resultList;
+}
+
+// Klasvoid printShares() {
+for (Share s : shares) {
+System.out.println(s.name + ", " + s.wkn + ", " + s.price);
+}
+System.out.println("");
+}se Watchlist, Methode printShares
+
+public static void main(String[] args) {
+// Watchlist erzeugen und Aktien hinzufügen
+Watchlist wl = new Watchlist();
+wl.addShare(new Share("djcbhk", "ihjshu7", 10029.0));
+wl.addShare(new Share("IBHIJ", "hjxaghjt5555", 0.1));
+wl.addShare(new Share("afxug", "653563fxg", 666.66));
+// Liste sortieren und ausgeben 1
+Collections.sort(wl.shares);
+wl.printShares();
+// Liste sortieren und ausgeben 2
+Collections.sort(wl.shares, new Comparator<Share>() {
+@Override
+public int compare(Share s1, Share s2) {
+return s1.name.compareTo(s2.name);
+}
+});
+wl.printShares();
+// Liste filtern und ausgeben 3
+wl.filterShares(s -> s.price > 50);
+wl.printShares();
+} // Ende main
+} // Ende class Watchlist
+
+
+
+
